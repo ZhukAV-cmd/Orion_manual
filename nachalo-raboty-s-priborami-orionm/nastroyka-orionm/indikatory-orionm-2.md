@@ -22,7 +22,7 @@ title: Индикаторы ORIONm
 *Дополнительные сведения см. в разделе 3.5.2. Индикаторы на приборе.*
 
 </td>
-<td>
+<td align="center">
 
 ![](./indikatory-orionm.png){width=96px height=130px}
 
@@ -44,7 +44,7 @@ title: Индикаторы ORIONm
 *Дополнительные сведения см. в разделе 3.5.2. Индикаторы на приборе.*
 
 </td>
-<td>
+<td align="center">
 
 ![](./indikatory-orionm-2.png){width=96px height=117px}
 
@@ -66,7 +66,7 @@ title: Индикаторы ORIONm
 *Дополнительные сведения см. в разделе 3.5.2. Индикаторы на приборе.*
 
 </td>
-<td>
+<td align="center">
 
 ![](./indikatory-orionm-3.png){width=96px height=123px}
 
@@ -86,7 +86,7 @@ title: Индикаторы ORIONm
 *Дополнительные сведения об индикаторах инициализации прибора см. в разделе 3.5.2. Индикаторы на приборе.*
 
 </td>
-<td>
+<td align="center">
 
 ![](./indikatory-orionm-4.png){width=105px height=95px}
 
@@ -104,7 +104,7 @@ title: Индикаторы ORIONm
 *Дополнительные сведения см.3.5.2. Индикаторы на приборе.*
 
 </td>
-<td>
+<td align="center">
 
 ![](./indikatory-orionm-5.png){width=202px height=84px}
 
@@ -123,6 +123,7 @@ title: Индикаторы ORIONm
 ### **Индикаторы состояния системы (пункт 1) Инициализация системы**
 
 <table header="row">
+<colgroup><col width="364"/><col width="372"/></colgroup>
 <tr>
 <td>
 
@@ -333,5 +334,3 @@ title: Индикаторы ORIONm
 </td>
 </tr>
 </table>
-
-
