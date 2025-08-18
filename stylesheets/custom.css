@@ -34,6 +34,10 @@
   --md-secondary-table-row-even-bg-color: #f8fafc;
   --md-secondary-table-row-hover-bg-color: #e3f2fd;
   --md-secondary-table-border-color: #e0e0e0;
+  
+  /* Новые переменные для изображений */
+  --md-table-image-border: #e0e0e0;
+  --md-table-image-bg: #f8f8f8;
 }
 
 /* ---------------------------------- */
@@ -63,6 +67,10 @@
   --md-secondary-table-row-even-bg-color: #1e1e2e;
   --md-secondary-table-row-hover-bg-color: #2d3748;
   --md-secondary-table-border-color: #334155;
+  
+  /* Новые переменные для изображений */
+  --md-table-image-border: #444;
+  --md-table-image-bg: #1a1a1a;
 }
 
 /*********************
@@ -103,74 +111,62 @@
 }
 
 /*********************************
- * TABLE STYLES (LIGHT & DARK)   *
+ * ENHANCED TABLE STYLES (FIXES) *
  *********************************/
 
-/* Контейнер для таблицы (для скругления углов и тени) */
+/*********************************
+ * ENHANCED TABLE STYLES (FIXES) *
+ *********************************/
+
+/* Основной контейнер для таблиц */
 .md-typeset__table {
-  width: 100%;
-  overflow-x: auto; /* Для адаптивности */
-  display: block;
-  margin: 1.5em 0;
-  border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  overflow: hidden; /* Обрезает содержимое по радиусу */
+  /* Убираем тень */
+  box-shadow: none;
 }
 
-/* Сама таблица внутри контейнера */
+/* Стили для самой таблицы */
 .md-typeset__table table {
-  width: 100%;
-  border-collapse: collapse;
+  background: transparent !important;
 }
 
 /* Заголовки таблиц */
 .md-typeset__table th {
-  font-weight: 600;
-  text-align: left;
-  padding: 12px 15px;
-  background-color: var(--md-primary-table-head-bg-color);
-  color: var(--md-primary-table-head-fg-color);
+  /* Убираем фон заголовков */
+  background-color: transparent !important;
+  /* Сохраняем нижнюю границу */
   border-bottom: 2px solid var(--md-secondary-table-border-color);
 }
 
 /* Ячейки таблиц */
 .md-typeset__table td {
-  padding: 12px 15px;
-  vertical-align: top;
-  border-bottom: 1px solid var(--md-secondary-table-border-color);
-  color: var(--md-default-fg-color);
-  word-wrap: break-word;
-  hyphens: auto;
-}
-
-/* Чередование строк */
-.md-typeset__table tr:nth-child(even) {
-  background-color: var(--md-secondary-table-row-even-bg-color);
-}
-
-/* Подсветка при наведении */
-.md-typeset__table tr:hover {
-  background-color: var(--md-secondary-table-row-hover-bg-color);
-  transition: background-color 0.2s ease;
-}
-
-/*
- * Принудительное обнуление фона у вложенных элементов.
- * Это "силовой" метод, который может понадобиться для переопределения стилей
- * фреймворка (например, у ссылок или кода внутри ячеек).
- * Если возможно, лучше использовать более конкретные селекторы,
- * например: .md-typeset__table td a, .md-typeset__table td code { ... }
- */
-.md-typeset__table * {
+  /* Убираем фон */
   background-color: transparent !important;
-  background-image: none !important;
 }
 
-.md-typeset__table tr:hover th,
-.md-typeset__table tr:hover td {
-  color: inherit !important;
+/* Убираем чередование строк */
+.md-typeset__table tr:nth-child(even) {
+  background-color: transparent !important;
 }
 
+/* Убираем подсветку при наведении */
+.md-typeset__table tr:hover {
+  background-color: transparent !important;
+}
+
+/* Убираем фон для пустых ячеек */
+.md-typeset__table td:empty {
+  background-color: transparent !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset__table td:empty {
+  background-color: transparent !important;
+}
+
+/* Убираем фон для специальных заголовков */
+.md-typeset__table tr:first-child td:first-child:empty + td {
+  background-color: transparent !important;
+}
+}
 
 /***************************************************
  * NAVIGATION: STYLES FOR ACTIVE & HOVER STATES    *
@@ -178,59 +174,69 @@
 
 /* --- Новые переменные для навигации --- */
 :root {
-  /* Цвет фона для активного пункта в светлой теме (полупрозрачный черный) */
   --md-nav-active-bg-color: rgba(51, 51, 51, 0.08);
 }
 
 [data-md-color-scheme="slate"] {
-  /* Цвет фона для активного пункта в темной теме (полупрозрачный белый) */
   --md-nav-active-bg-color: rgba(224, 224, 224, 0.08);
 }
 
-
 /* --- Стили для ссылок в навигации --- */
-
-/* Общий сброс стандартного фона/тени от фреймворка */
 .md-nav__link:hover,
 .md-nav__link--active {
   background: none !important;
   box-shadow: none !important;
 }
 
-/* 1. Эффект при НАВЕДЕНИИ курсора (hover) */
-/* ------------------------------------------- */
-
-/* Светлая тема: текст становится синим (цвет ссылки) для заметности */
 [data-md-color-scheme="default"] .md-nav__link:hover {
   color: var(--md-typeset-a-color) !important;
 }
 
-/* Темная тема: текст становится оранжевым (основной цвет темы) для контраста */
 [data-md-color-scheme="slate"] .md-nav__link:hover {
   color: var(--md-primary-fg-color) !important;
 }
 
-
-/* 2. Стиль для АКТИВНОГО (выбранного) пункта */
-/* --------------------------------------------- */
 .md-nav__link--active {
-  /* Добавляем отступы и скругление для создания "плашки" */
   display: block;
   margin: 0.1em 0;
-  padding-left: 12px; /* Убедитесь, что этот отступ соответствует вашему дизайну */
+  padding-left: 12px;
   border-radius: 4px;
-  /* Применяем цвет фона из наших новых переменных */
   background-color: var(--md-nav-active-bg-color) !important;
 }
 
-/* Цвет текста для активного пункта в светлой теме (делаем его жирнее и темнее) */
 [data-md-color-scheme="default"] .md-nav__link--active {
   font-weight: 600;
   color: var(--md-primary-fg-color--dark) !important;
 }
 
-/* Цвет текста для активного пункта в темной теме (делаем его белым и жирным) */
 [data-md-color-scheme="slate"] .md-nav__link--active {
   font-weight: 600;
   color: #ffffff !important;
+}
+
+/**********************************
+ * ADDITIONAL FIXES FOR SPECIFIC ISSUES *
+ **********************************/
+
+/* Убираем фон для технических таблиц */
+.md-typeset table:not([class]) td:first-child {
+  background-color: transparent !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) td:first-child {
+  background-color: transparent !important;
+}
+
+/* Убираем фон для заголовков модулей */
+.md-typeset table:not([class]) td[colspan="2"] {
+  background-color: transparent !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) td[colspan="2"] {
+  background-color: transparent !important;
+}
+
+/* Фикс для темного режима */
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) td {
+  background-color: transparent !important;
 }
