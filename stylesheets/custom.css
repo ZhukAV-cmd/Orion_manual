@@ -251,3 +251,88 @@
 .md-typeset table:not([class]) td[colspan="2"] { background-color: transparent !important; }
 [data-md-color-scheme="slate"] .md-typeset table:not([class]) td[colspan="2"] { background-color: transparent !important; }
 [data-md-color-scheme="slate"] .md-typeset table:not([class]) td { background-color: transparent !important; }
+
+
+
+/* Выпадающее меню для навигации */
+.md-tabs__item {
+  position: relative;
+}
+
+.nav-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--md-primary-fg-color--light);
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  min-width: 250px;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  padding: 0.5rem 0;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.nav-dropdown a {
+  display: block;
+  padding: 0.6rem 1.2rem;
+  color: var(--md-default-fg-color) !important;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  font-size: 0.9rem;
+}
+
+.nav-dropdown a:last-child {
+  border-bottom: none;
+}
+
+.nav-dropdown a:hover {
+  background-color: var(--md-primary-fg-color--light);
+  color: var(--md-default-bg-color) !important;
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 76.1875em) {
+  .nav-dropdown {
+    position: static;
+    display: none;
+    box-shadow: none;
+    border: none;
+    max-height: none;
+    opacity: 1;
+    transform: none;
+    padding: 0;
+  }
+  
+  .md-tabs__item--active .nav-dropdown {
+    display: block;
+  }
+  
+  .nav-dropdown a {
+    padding: 0.8rem 1.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+}
+
+/* Улучшение видимости активной вкладки */
+.md-tabs__item--active {
+  background-color: rgba(0,0,0,0.05);
+}
+
+[data-md-color-scheme="slate"] .md-tabs__item--active {
+  background-color: rgba(255,255,255,0.05);
+}
+
+/* Индикатор наличия выпадающего меню */
+.md-tabs__item.has-dropdown > .md-tabs__link::after {
+  content: "▼";
+  margin-left: 0.3rem;
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
